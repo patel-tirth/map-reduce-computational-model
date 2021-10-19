@@ -1,3 +1,4 @@
+
 name := "LogFileGenerator"
 
 version := "0.1"
@@ -12,7 +13,10 @@ val scalacticVersion = "3.2.9"
 val generexVersion = "1.0.2"
 
 resolvers += Resolver.jcenterRepo
-
+assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+  case x => MergeStrategy.first
+}
 libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-core" % logbackVersion,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
@@ -23,5 +27,6 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % scalacticVersion % Test,
   "org.scalatest" %% "scalatest-featurespec" % scalacticVersion % Test,
   "com.typesafe" % "config" % typesafeConfigVersion,
-  "com.github.mifmif" % "generex" % generexVersion
+  "com.github.mifmif" % "generex" % generexVersion,
+  "org.apache.hadoop" % "hadoop-core" % "1.2.1"
 )
