@@ -19,14 +19,13 @@ import scala.collection.JavaConverters.*
 
 class HighestNumberOfCharactersReducer extends Reducer[Text,IntWritable,Text,IntWritable]{
   override def reduce(key: Text, values: Iterable[IntWritable], context: Reducer[Text, IntWritable, Text, IntWritable]#Context): Unit = {
-//    var sum = values.asScala.foldLeft(0)(_ + _.get)
+    var sum = values.asScala.foldLeft(0)(_ + _.get)
 
 //    def max(a: IntWritable, b: IntWritable): Int = {
 //      if (a.get() > b.get()) a.get() else b.get()
 //    }
-    var m = values.asScala.foldLeft(0)(_ max _.get)
-
-
-    context.write(key, new IntWritable(m))
+//    var m = values.asScala.foldLeft(0)(_ max _.get)
+    
+    context.write(key, new IntWritable(sum))
   }
 }
