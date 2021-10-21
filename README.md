@@ -1,7 +1,7 @@
 # Homework 2
 
-## Tirth Patel 
-# [Video Demonstrating Running Map Reduce On AWS EMR](https://youtu.be/z7xKDgyePKw)
+#### Tirth Patel 
+#### [Video Demonstrating Running Map Reduce On AWS EMR](https://youtu.be/z7xKDgyePKw)
 
 ### The goal of this homework is for students to gain experience with solving a distributed computational problem using cloud computing technologies. The main textbook group (option 1) will design and implement an instance of the map/reduce computational model whereas the alternative textbook group (option 2) will use the CORBA model. You can check your textbook option in the corresponding column of the gradebook on the Blackboard.
 ### Grade: 9%
