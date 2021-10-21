@@ -33,30 +33,27 @@ class HighestNumberOfCharactersMapper extends Mapper[Object, Text, Text, IntWrit
 //    var maxCountWarn = 0
 //    var maxCountError = 0
     while(itr.hasMoreTokens()){
+      word.set(itr.nextToken())
       if(word.toString.equals("INFO")){
         word.set(itr.nextToken())
         word.set(itr.nextToken())
         word.set(itr.nextToken())
         context.write(new Text("INFO highest character count"),new IntWritable(word.toString.toCharArray.length))
-//          if(word.toString.toCharArray.length > maxCountInfo)
-//            maxCountInfo = word.toString.toCharArray.length
+
       } else if (word.toString.equals("DEBUG")){
-//        if(word.toString.toCharArray.length > maxCountDebug)
-//          maxCountDebug = word.toString.toCharArray.length
+
         word.set(itr.nextToken())
         word.set(itr.nextToken())
         word.set(itr.nextToken())
         context.write(new Text("DEBUG highest character count"),new IntWritable(word.toString.toCharArray.length))
       } else if (word.toString.equals("WARN")){
-//        if(word.toString.toCharArray.length > maxCountWarn)
-//          maxCountWarn = word.toString.toCharArray.length
+
         word.set(itr.nextToken())
         word.set(itr.nextToken())
         word.set(itr.nextToken())
         context.write(new Text("WARN highest character count"),new IntWritable(word.toString.toCharArray.length))
       } else if (word.toString.equals("ERROR")){
-//        if(word.toString.toCharArray.length > maxCountError)
-//          maxCountError = word.toString.toCharArray.length
+
         word.set(itr.nextToken())
         word.set(itr.nextToken())
         word.set(itr.nextToken())
