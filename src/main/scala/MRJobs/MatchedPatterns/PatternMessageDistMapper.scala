@@ -40,10 +40,39 @@ class PatternMessageDistMapper extends Mapper[Object, Text, Text, IntWritable]{
     val itr = new StringTokenizer(value.toString)
     while (itr.hasMoreTokens()) {
       word.set(itr.nextToken())
-      pattern.findFirstMatchIn(word.toString).map(m => {
-        word.set("total number of matched patterns")
-        context.write(word,one)
-      })
+      if(word.toString.equals("INFO")) {
+        word.set(itr.nextToken())
+        word.set(itr.nextToken())
+        word.set(itr.nextToken())
+        pattern.findFirstMatchIn(word.toString).map(m => {
+          word.set("Total INFO")
+          context.write(word, one)
+        })
+      } else if (word.toString.equals("DEBUG")){
+        word.set(itr.nextToken())
+        word.set(itr.nextToken())
+        word.set(itr.nextToken())
+        pattern.findFirstMatchIn(word.toString).map(m => {
+          word.set("Total DEBUG")
+          context.write(word, one)
+        })
+      } else if (word.toString.equals("WARN")){
+        word.set(itr.nextToken())
+        word.set(itr.nextToken())
+        word.set(itr.nextToken())
+        pattern.findFirstMatchIn(word.toString).map(m => {
+          word.set("Total WARN")
+          context.write(word, one)
+        })
+      } else if (word.toString.equals("ERROR")){
+        word.set(itr.nextToken())
+        word.set(itr.nextToken())
+        word.set(itr.nextToken())
+        pattern.findFirstMatchIn(word.toString).map(m => {
+          word.set("Total ERROR")
+          context.write(word, one)
+        })
+      }
 
     }
   }

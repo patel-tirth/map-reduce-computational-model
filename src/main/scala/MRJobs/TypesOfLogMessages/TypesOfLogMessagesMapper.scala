@@ -33,7 +33,6 @@ class TypesOfLogMessagesMapper extends Mapper[Object, Text, Text, IntWritable]{
   val endTime = format.parse(timeTo)   // parse the desired end time from the config file
 
   def checkDateFormat(str: String)  =
-//    val testDate = Try[Date](format.parse(str))
      Try[Date](format.parse(str)) match {
        case Success(testDate) => true
        case Failure(exception) => false
@@ -63,7 +62,7 @@ class TypesOfLogMessagesMapper extends Mapper[Object, Text, Text, IntWritable]{
           word.set(itr.nextToken())
           pattern.findFirstMatchIn(word.toString).map(e => {
             //          word.set("TOTAL INFO WITH MATCHED REGEX")
-            val i = t1 + " INFO " + word
+            var i = t1 + " INFO " + word
             context.write(new Text(i), one)
           })
         } else if (word.toString.equals("WARN")) {
@@ -72,7 +71,7 @@ class TypesOfLogMessagesMapper extends Mapper[Object, Text, Text, IntWritable]{
           word.set(itr.nextToken())
           pattern.findFirstMatchIn(word.toString).map(e => {
             //          word.set("TOTAL WARN WITH MATCHED REGEX")
-            val w = t1 + " WARN " + word
+            var w = t1 + " WARN " + word
             context.write(new Text(w), one)
           })
 
@@ -82,7 +81,7 @@ class TypesOfLogMessagesMapper extends Mapper[Object, Text, Text, IntWritable]{
           word.set(itr.nextToken())
           pattern.findFirstMatchIn(word.toString).map(e => {
             //          word.set("TOTAL DEBUG WITH MATCHED REGEX")
-            val d = t1 + " DEBUG " + word
+            var d = t1 + " DEBUG " + word
             context.write(new Text(d), one)
           })
         } else if (word.toString.equals("ERROR")) {
@@ -91,7 +90,7 @@ class TypesOfLogMessagesMapper extends Mapper[Object, Text, Text, IntWritable]{
           word.set(itr.nextToken())
           pattern.findFirstMatchIn(word.toString).map(e => {
             //          word.set("TOTAL ERROR WITH MATCHED REGEX")
-            val e = t1 + " ERROR " + word
+            var e = t1 + " ERROR " + word
             context.write(new Text(e), one)
           })
         }
