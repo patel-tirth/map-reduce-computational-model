@@ -3,6 +3,36 @@
 #### Tirth Patel 
 #### [Video Demonstrating Running Map Reduce On AWS EMR](https://youtu.be/z7xKDgyePKw)
 
+
+To run the program, follow these steps:
+```
+cd map-reduce-computational-model
+sbt clean compile assembly
+```
+This will create jar file under /target/scala3.0.2/LogFileGenerator-assembly-0.1.jar
+
+First, move the input log file into the hadoop file system using:
+```
+hadoop fs -copyFromLocal ./log/LogFileGenerator.2021-10-19.log /inputfile
+```
+Now, to run this jar file on hadoop, do:
+
+```
+hadoop jar ./target/scala3.0.2/LogFileGenerator-assembly-0.1.jar /inputfile /outputfile job1
+```
+To run multiple jobs specify them in the above command after the output file such as:
+
+```
+hadoop jar ./target/scala3.0.2/LogFileGenerator-assembly-0.1.jar /inputfile /outputfile2 job2 job3
+```
+
+This will create output reducer files in outputfile.
+To view the contents do:
+
+```
+hdfs dfs -cat /outputfile/job1/part-r-00000
+hdfs dfs -cat /outputfile2/job12/part-r-00000
+```
 ### The goal of this homework is for students to gain experience with solving a distributed computational problem using cloud computing technologies. The main textbook group (option 1) will design and implement an instance of the map/reduce computational model whereas the alternative textbook group (option 2) will use the CORBA model. You can check your textbook option in the corresponding column of the gradebook on the Blackboard.
 ### Grade: 9%
 #### This Git repo contains the description of the second homework that uses this implementation of a log file generator in Scala. Students should clone this repo using the command ```git clone git@github.com:0x1DOCD00D/LogFileGenerator.git```. Students should invest some time to learn the implementation details of the log generator, specifically, how no ```var``` is used and how mutation is avoided and recursion is used, however, it is not required for completing this homework.
